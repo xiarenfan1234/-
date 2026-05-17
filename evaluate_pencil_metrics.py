@@ -238,14 +238,10 @@ def save_edge_maps(
 
 
 def main():
-    # ==================================================
-    # 1. 修改这里：原图路径
-    # ==================================================
+
     original_path = "images/original.jpg"
 
-    # ==================================================
-    # 2. 修改这里：五种方法的生成图路径
-    # ==================================================
+
     generated_images = {
         "Traditional method": "images/traditional.jpg",
         "First deep learning model": "images/first_deep_learning.jpg",
@@ -254,16 +250,11 @@ def main():
         "Hybrid 30/70": "images/hybrid_30_70.jpg"
     }
 
-    # ==================================================
-    # 3. Canny 阈值
-    # 我前面给你计算时使用的是 100 / 200
-    # ==================================================
+
     canny_low = 100
     canny_high = 200
 
-    # ==================================================
-    # 4. 读取原图并提取原图边缘
-    # ==================================================
+
     original_gray = read_gray_image(original_path)
 
     original_edges = calculate_canny_edges(
@@ -272,9 +263,7 @@ def main():
         high_threshold=canny_high
     )
 
-    # ==================================================
-    # 5. 逐个方法计算指标
-    # ==================================================
+
     results = []
 
     for method_name, image_path in generated_images.items():
@@ -291,21 +280,14 @@ def main():
 
         results.append(result)
 
-    # ==================================================
-    # 6. 输出结果
-    # ==================================================
+
     print("\nQuantitative comparison of the five processing methods:\n")
     print_table(results)
 
-    # ==================================================
-    # 7. 保存 CSV
-    # ==================================================
+
     save_to_csv(results, "quantitative_results.csv")
     print("\nResults saved to quantitative_results.csv")
 
-    # ==================================================
-    # 8. 可选：保存边缘图，方便你放论文或检查
-    # ==================================================
     save_edge_maps(
         original_gray=original_gray,
         original_edges=original_edges,
