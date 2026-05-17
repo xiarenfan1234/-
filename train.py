@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-train.py
-深度学习主导版
-目标：
-- 深度学习负责主要风格生成
-- 传统法只是辅助构造训练 target
-- 更适合论文写作：基于深度学习的图像风格转换
-"""
+
 
 import os
 import random
@@ -461,7 +454,7 @@ def train(
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             torch.save(model.state_dict(), BEST_MODEL_PATH)
-            print(f"✅ 保存最佳模型: {BEST_MODEL_PATH}")
+            print(f"保存最佳模型: {BEST_MODEL_PATH}")
 
         print(
             f"Epoch {epoch + 1:03d} | "
@@ -473,7 +466,7 @@ def train(
 
     torch.save(model.state_dict(), FINAL_MODEL_PATH)
 
-    print("\n🎉 训练完成")
+    print("\n 训练完成")
     print(f"最佳验证损失: {best_val_loss:.4f}")
     print(f"最佳模型: {BEST_MODEL_PATH}")
     print(f"最终模型: {FINAL_MODEL_PATH}")
