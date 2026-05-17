@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-app.py
-深度学习主导版混合式铅笔画 Flask 应用
 
-核心思路：
-- 深度学习输出作为主要结果（70%）
-- 传统铅笔画只做辅助增强（30%）
-- 适合论文表述：基于深度学习的图像风格转换，辅以传统图像处理优化
 """
 
 import os
@@ -145,10 +139,7 @@ def generate_paper_texture(shape):
 
 
 def classical_pencil_sketch(bgr_img):
-    """
-    传统铅笔画辅助算法
-    注意：这里定位为辅助，不再过分强调传统硬边
-    """
+
     gray = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2GRAY)
     gray = cv2.bilateralFilter(gray, 7, 40, 40)
 
@@ -176,12 +167,7 @@ def classical_pencil_sketch(bgr_img):
 
 
 def enhance_final_sketch(gray, source_bgr=None):
-    """
-    最终增强：
-    - 轻微提对比
-    - 轻微白化背景
-    - 轻量边缘增强
-    """
+
     gray = cv2.GaussianBlur(gray, (0, 0), 0.4)
     gray = cv2.createCLAHE(clipLimit=1.8, tileGridSize=(8, 8)).apply(gray)
     gray = soft_white_background(gray)
@@ -196,11 +182,7 @@ def enhance_final_sketch(gray, source_bgr=None):
 
 
 def hybrid_pencil_sketch(image_path):
-    """
-    混合推理：
-    - 深度学习主导（70%）
-    - 传统算法辅助（30%）
-    """
+
     bgr_img, input_tensor, original_size = preprocess_image(image_path)
 
     classical = classical_pencil_sketch(bgr_img)
