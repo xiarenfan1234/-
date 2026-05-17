@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>转换结果</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+        body{background:#f5f5f5;padding:40px}
+        .container{max-width:1000px;margin:0 auto;background:white;padding:30px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+        h1{text-align:center;color:#333;margin-bottom:30px}
+        .img-box{display:flex;justify-content:space-around;margin:30px 0}
+        .img-item{width:45%;text-align:center}
+        img{max-width:100%;border-radius:8px;box-shadow:0 0 5px rgba(0,0,0,0.2)}
+        .back{text-align:center;margin-top:30px}
+        a{background:#4285F4;color:white;padding:12px 30px;border-radius:5px;text-decoration:none}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ 转换完成</h1>
+        <div class="img-box">
+            <div class="img-item">
+                <h3>原图</h3>
+                <!-- 后端需传递 upload_image 变量，仅为文件名 -->
+                <img src="{{ url_for('static', filename='uploads/' + upload_image) }}" alt="原图">
+            </div>
+            <div class="img-item">
+                <h3>铅笔画</h3>
+                <!-- 后端需传递 result_image 变量，仅为文件名 -->
+                <img src="{{ url_for('static', filename='results/' + result_image) }}" alt="铅笔画">
+            </div>
+        </div>
+        <div class="back">
+            <a href="/">返回继续转换</a>
+        </div>
+    </div>
+</body>
+</html>
