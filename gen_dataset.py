@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-gen_dataset.py
-生成更合理的伪自然图像训练集
-目标：
-- input: 更像真实场景的彩色图
-- target: 更柔和、更适合深度学习学习的白底铅笔画
-说明：
-- 为了让深度学习成为主导，target 不再过分强调硬边
-- 保留铅笔画结构，但降低传统硬线条占比
-"""
+
 
 import os
 import cv2
@@ -160,12 +151,7 @@ def generate_paper_texture(shape):
 
 
 def make_sketch_target(bgr_img):
-    """
-    更适合深度学习学习的 target：
-    - 保留结构
-    - 降低硬边权重
-    - 提高连续灰度层次
-    """
+
     gray = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2GRAY)
     gray = cv2.bilateralFilter(gray, 7, 40, 40)
 
@@ -228,7 +214,7 @@ def make_dataset(num_samples=NUM_SAMPLES, size=IMG_SIZE):
         cv2.imwrite(os.path.join(INPUT_DIR, f"{i:06d}.jpg"), img)
         cv2.imwrite(os.path.join(TARGET_DIR, f"{i:06d}.jpg"), sketch)
 
-    print("✅ 数据集生成完成")
+    print("数据集生成完成")
     print(f"输入目录: {INPUT_DIR}")
     print(f"目标目录: {TARGET_DIR}")
 
